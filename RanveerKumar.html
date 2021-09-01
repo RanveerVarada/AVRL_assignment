@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <title>AVRL Assignment</title>
+		<style>
+	*{
+		margin:0;
+		padding:0;
+		box-sizing:border-box;
+	}
+	.container{
+		width:100vw;
+		height:100vh;
+		background-color:#fff;
+		position:relative;
+	}
+	.sub_container{
+		display:flex;
+		width:175px;
+		height:175px;
+		background-color:#fff;
+		position:absolute;
+		left:50%;
+		top:30%;
+		transform:translate(-50%,-30%);
+	}
+	.btn_container{
+		width:175px;
+		position:absolute;
+		left:50%;
+		top:58%;
+		transform:translate(-50%,-58%);
+	}
+    .animation{
+        position: relative;
+        width: 400px;
+        height: 175px;
+    }
+	.top_left{
+		width:50px;
+		height:50px;
+		background-color:red;
+		border-radius:50px;
+		position:absolute;
+		top:0px;
+		left:0px;
+	}
+		
+		
+		.top_right{
+		width:50px;
+		height:50px;
+		background-color:yellow;
+		border-radius:50px;
+		position:absolute;
+		top:0px;
+		right:0;
+		}
+		
+		
+		.bottom_right{
+		width:50px;
+		height:50px;
+		background-color:blue;
+		border-radius:50px;
+		position:absolute;
+        bottom: 0px;
+        right: 0;
+		}
+		
+		
+		.bottom_left{
+		width:50px;
+		height:50px;
+		background-color:green;
+		border-radius:50px;
+		position:absolute;
+		bottom:0px;
+		left:0px;
+		z-index:-1;
+		}
+		
+		.start_btn,.stop_btn{
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        cursor: pointer;
+        color: #fff;
+        border-radius:3px;
+        background-color: green;
+        border: 1px solid #309630;
+		}
+		.start_btn{
+		float:left;
+		}
+		.start_btn{
+		float:left;
+		}
+		.stop_btn{
+		float:right;
+		}
+
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+		    <div class="sub_container">
+			    <div class="animation">
+				    <div class="top_left" id="dot_tl"></div>
+	                <div class="top_right" id="dot_tr"></div>
+	                <div class="bottom_right" id="dot_br"></div>
+	                <div class="bottom_left" id="dot_bl"></div>
+				</div>
+			</div>
+			<div class="btn_container">
+			    <button onclick="start_animation()" class="start_btn">Start</button>
+			    <button onclick="stop_animation()" class="stop_btn">Stop</button>
+			</div>
+		</div>
+	    <script>
+		var interval_1;
+		var interval_2;
+		var x='tl';
+		var y='tr';
+		var z='br';
+		var p='bl';
+		var n,l,m,s;
+		function animating_1(){
+		n=x;
+		x=y;
+		y=z;
+		z=p;
+		p=n;
+		document.getElementById("dot_tl").style.transition = "all 1s";
+		document.getElementById("dot_tl").style.width = "175px";
+		
+		document.getElementById("dot_tr").style.transition = "all 1s";
+		document.getElementById("dot_tr").style.height = "175px";
+		
+		document.getElementById("dot_br").style.transition = "all 1s";
+		document.getElementById("dot_br").style.width = "175px";
+		
+		document.getElementById("dot_bl").style.transition = "all 1s";
+		document.getElementById("dot_bl").style.height = "175px";
+		
+		document.getElementById("dot_"+z).style.backgroundColor = "#ff0000";//red: #ff0000;p
+		document.getElementById("dot_"+p).style.backgroundColor = "#ffff00";//yellow: #ffff00x
+		document.getElementById("dot_"+x).style.backgroundColor = "#0000ff";//blue: #0000ff
+		document.getElementById("dot_"+y).style.backgroundColor ="#008000";//green: #008000 
+		}
+		
+		function animating_2(){
+		document.getElementById("dot_tl").style.transition = "all 1s";
+		document.getElementById("dot_tl").style.width = "50px";
+		
+		document.getElementById("dot_tr").style.transition = "all 1s";
+		document.getElementById("dot_tr").style.height = "50px";
+		
+		document.getElementById("dot_br").style.transition = "all 1s";
+		document.getElementById("dot_br").style.width = "50px";
+		
+		document.getElementById("dot_bl").style.transition = "all 1s";
+		document.getElementById("dot_bl").style.height = "50px";
+		
+		document.getElementById("dot_"+z).style.backgroundColor = "#ffff00";
+		document.getElementById("dot_"+p).style.backgroundColor = "#0000ff";
+		document.getElementById("dot_"+x).style.backgroundColor = "#008000";
+		document.getElementById("dot_"+y).style.backgroundColor = "#ff0000";
+		s=z;
+		m=x;
+		l=y;
+		x=p;
+		y=m;
+		z=l;
+		p=s;
+		}
+		function start_animation(){
+	    interval_1=setInterval(function(){animating_1();},1000);
+		interval_2=setInterval(function(){animating_2();},2000);
+		}
+		function stop_animation(){
+		clearInterval(interval_1);
+		clearInterval(interval_2);
+		document.getElementById("dot_tl").style.transition = "width 1s";
+		document.getElementById("dot_tl").style.width = "50px";
+		document.getElementById("dot_tr").style.transition = "height 1s";
+		document.getElementById("dot_tr").style.height = "50px";
+		document.getElementById("dot_br").style.transition = "width 1s";
+		document.getElementById("dot_br").style.width = "50px";
+		document.getElementById("dot_bl").style.transition = "height 1s";
+		document.getElementById("dot_bl").style.height = "50px";
+		}
+		</script>
+	</body>
+</html>
